@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Dynamic List Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 20px auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 48%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 8px;
+            border: 1px solid greenyellow;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic List</h1>
+        <input type="text" id="itemInput" placeholder="Enter item" />
+        <div>
+            <button class="add-btn" id="addBtn">Add</button>
+            <button class="delete-btn" id="deleteBtn">Delete All</button>
+        </div>
+        <ul id="itemList"></ul>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const addBtn = document.getElementById('addBtn');
+            const deleteBtn = document.getElementById('deleteBtn');
+            const itemInput = document.getElementById('itemInput');
+            const itemList = document.getElementById('itemList');
+
+            addBtn.onclick = function() {
+                const inputValue = itemInput.value;
+                if (inputValue.trim() !== "") {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = inputValue;
+                    itemList.appendChild(listItem);
+                    itemInput.value = "";
+                }
+            };
+
+            deleteBtn.onclick = function() {
+                itemList.innerHTML = "";
+            };
+        };
+    </script>
+</body>
+</html>
