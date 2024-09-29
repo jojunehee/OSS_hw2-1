@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="my.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 수정</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .confirm-btn {
+            background-color: #00b11b;
+            color: white;
+        }
+
+        .cancel-btn {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body class="edit-page">
+    <div class="container">
+        <h2>제품 수정</h2>
+        <form id="edit-product-form">
+            <div class="form-group">
+                <label for="product-name">제품 이름</label>
+                <input type="text" id="product-name" required value="제품 B">
+            </div>
+            <div class="form-group">
+                <label for="product-price">가격</label>
+                <input type="text" id="product-price" required value="30000" oninput="validatePrice(this)">
+            </div>
+            <div class="form-group">
+                <label for="product-quantity">제품 갯수</label>
+                <input type="number" id="product-quantity" min="1" required value="2">
+            </div>
+            <div class="form-group">
+                <label for="delivery-status">배송 상태</label>
+                <select id="delivery-status" required>
+                    <option value="상품 준비 중">상품 준비 중</option>
+                    <option value="배송 중" selected>배송 중</option>
+                    <option value="배송 완료">배송 완료</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="delivery-date">도착 일자</label>
+                <input type="date" id="delivery-date" required value="2024-09-22">
+            </div>
+            <div class="form-group">
+                <label for="customer-phone">고객 전화번호</label>
+                <input type="tel" id="customer-phone" placeholder="010-1234-5678" pattern="010-[0-9]{4}-[0-9]{4}" required value="010-1234-5678">
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="confirm-btn" onclick="validateAndConfirm()">확인</button>
+                <button type="button" class="cancel-btn" onclick="location.href='index.html'">취소</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validatePrice(input) {
+            if (input.value < 0) {
+                alert('가격은 0보다 커야 합니다.');
+                input.value = '';
+            }
+        }
+
+        function validateAndConfirm() {
+            var name = document.getElementById('product-name').value;
+            var price = document.getElementById('product-price').value;
+            var quantity = document.getElementById('product-quantity').value;
+            var status = document.getElementById('delivery-status').value;
+            var date = document.getElementById('delivery-date').value;
+            var phone = document.getElementById('customer-phone').value;
+
+            if (name === '' || price === '' || quantity === '' || status === '' || date === '' || phone === '') {
+                alert('모든 항목을 입력해주세요.');
+            } else if (price <= 0) {
+                alert('가격은 0보다 커야 합니다.');
+            } else if (quantity <= 0) {
+                alert('제품 갯수는 0보다 커야 합니다.');
+            } else if (!/^010-\d{4}-\d{4}$/.test(phone)) {
+                alert('올바른 전화번호 형식을 입력해주세요. 예: 010-1234-5678');
+            } else {
+                if (confirm("게시물을 수정할까요?")) {
+                    location.href = 'index.html';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

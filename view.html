@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="my.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 상세 보기</title>
+   
+</head>
+<body class="view-page">
+    <div class="container">
+
+        <header>
+            <div class="logo">
+                <img src="tack.png" alt="로고 이미지" style="width: 100%; ">
+            </div>
+            <h1>제품 상세 정보</h1>
+        </header>
+
+        <hr>
+
+        <section class="product-details">
+            <div class="product-image">
+                <img src="꽃게.jpg" alt="꽃게 이미지" style="width: 100%; height: auto;">
+            </div>
+            
+            <div class="info-row">
+                <span>상태: 배송 완료</span><span>날짜: 2024-09-20</span>
+            </div>
+            <div class="info-row">
+                <span>꽃게 300g</span>
+            </div>
+            <div class="info-row">
+                <span>가격: 50,000원</span><span>수량: 4개</span><span>총액: 200,000원</span>
+            </div>
+            <div class="info-row">
+                <span>고객 전화번호: 010-1234-5678</span>
+            </div>
+        </section>
+
+        <section class="product-actions">
+            <button class="edit-btn" onclick="location.href='edit.html'">수정</button>
+            <button class="delete-btn" onclick="confirmDelete()">삭제</button>
+            <button class="list-btn" onclick="location.href='index.html'">목록</button>
+            <button class="add-btn">추가</button>
+        </section>
+    </div>
+
+    <script>
+        function confirmDelete() {
+            if (confirm("게시물을 삭제할까요?")) {
+                alert("게시물이 삭제되었습니다.");
+            }
+        }
+    </script>
+</body>
+</html>

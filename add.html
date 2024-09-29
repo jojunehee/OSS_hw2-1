@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="my.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 추가</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf6e3; /* my.css와 동일한 배경색 */
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fffbf2; /* my.css와 유사한 컨테이너 배경색 */
+            border: 2px solid #ff8d5c; /* my.css와 동일한 테두리색 */
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff8d5c; /* my.css 버튼 테두리색과 동일 */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #f2b880; /* my.css와 유사한 폼 테두리색 */
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .confirm-btn {
+            background-color: #ffb534; /* my.css에서 사용하는 버튼 배경색 */
+            color: #000000; /* my.css의 버튼 텍스트 색상 */
+        }
+
+        .cancel-btn {
+            background-color: rgb(219, 28, 28); /* my.css에서 사용하는 삭제 버튼 색상 */
+            color: white;
+        }
+
+        /* 반응형 디자인: 화면 너비가 800px 이하일 때 적용 */
+        @media (max-width: 800px) {
+            .container {
+                width: 100%; /* 화면 너비를 100%로 설정 */
+                padding: 10px; /* 여백을 줄여서 더 컴팩트하게 */
+            }
+
+
+
+            .button-group button {
+                width: 100%; /* 버튼이 100% 너비를 차지하게 함 */
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="add-page">
+    
+    
+    <div class="container">
+        <h2>제품 추가</h2>
+        <form id="product-form">
+            <div class="form-group">
+                <label for="product-name">제품 이름</label>
+                <input type="text" id="product-name" required>
+            </div>
+            <div class="form-group">
+                <label for="product-price">가격</label>
+                <input type="text" id="product-price" required oninput="validatePrice(this)">
+            </div>
+            <div class="form-group">
+                <label for="product-quantity">제품 갯수</label>
+                <input type="number" id="product-quantity" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="delivery-status">배송 상태</label>
+                <select id="delivery-status" required>
+                    <option value="상품 준비 중">상품 준비 중</option>
+                    <option value="배송 중">배송 중</option>
+                    <option value="배송 완료">배송 완료</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="delivery-date">도착 일자</label>
+                <input type="date" id="delivery-date" required>
+            </div>
+            <div class="form-group">
+                <label for="customer-phone">고객 전화번호</label>
+                <input type="tel" id="customer-phone" placeholder="010-1234-5678" pattern="010-[0-9]{4}-[0-9]{4}" required>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="confirm-btn" onclick="validateForm()">확인</button>
+                <button type="button" class="cancel-btn" onclick="location.href='index.html'">취소</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // 폼 요소 가져오기
+            var name = document.getElementById('product-name').value;
+            var price = document.getElementById('product-price').value;
+            var quantity = document.getElementById('product-quantity').value;
+            var status = document.getElementById('delivery-status').value;
+            var date = document.getElementById('delivery-date').value;
+            var phone = document.getElementById('customer-phone').value;
+
+            // 유효성 검사
+            if (name === '' || price === '' || quantity === '' || status === '' || date === '' || phone === '') {
+                alert('모든 항목을 입력해주세요.');
+            } else if (price <= 0) {
+                alert('가격은 0보다 커야 합니다.');
+            } else if (quantity <= 0) {
+                alert('제품 갯수는 0보다 커야 합니다.');
+            } else if (!/^010-\d{4}-\d{4}$/.test(phone)) {
+                alert('올바른 전화번호 형식을 입력해주세요. 예: 010-1234-5678');
+            } else {
+                alert('게시물이 추가됩니다');
+                // 추가 로직을 작성할 수 있음 (예: 서버로 데이터 전송)
+            }
+        }
+    </script>
+</body>
+</html>

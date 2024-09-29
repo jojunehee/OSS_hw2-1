@@ -1,0 +1,585 @@
+/* 공통 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fdf6e3;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fffbf2;
+    border-radius: 10px;
+    border: 2px solid #ff8d5c;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.logo {
+    background-color: #ffb534;
+    border: 2px solid #bc8400;
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    border-radius: 3px;
+    color: #000000;
+}
+
+.home-btn {
+    background-color: #f2b880;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000000;
+    border-radius: 10px;
+}
+
+.product-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+.filter-group {
+    display: flex;
+    gap: 10px;
+}
+
+.product-filter input {
+    padding: 5px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #f2b880;
+}
+
+.product-filter .search-btn {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid #ff8d5c;
+    background-color: #f2b880;
+    color: #000000;
+}
+
+.product-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.add-btn {
+    background-color: #f2b880;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 2px solid #ff8d5c;
+    border-radius: 5px;
+    color: #000000;
+}
+
+.product-list {
+    margin-top: 20px;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #fbe4c1;
+    border: 2px solid #ff8d5c;
+    margin-bottom: 15px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.product-image {
+    width: 180px;
+    height: 180px;
+    background-color: #e8ccb0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product-details {
+    flex-grow: 1;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.product-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.edit-btn, .delete-btn {
+    background-color: #f2b880;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 2px solid #ff8d5c;
+    border-radius: 5px;
+    color: #000000;
+}
+
+.product-item[data-status="상품 준비 중"] .status {
+    color: red;
+    font-weight: bold;
+}
+
+.product-item[data-status="배송 중"] .status {
+    color: orange;
+    font-weight: bold;
+}
+
+.product-item[data-status="배송 완료"] .status {
+    color: green;
+    font-weight: bold;
+}
+
+.add-page .container, .edit-page .container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fffbf2;
+    border: 2px solid #ff8d5c;
+    border-radius: 10px;
+}
+
+.add-page h2 , .edit-page h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff8d5c;
+}
+
+.add-page .form-group, .edit-page .form-group {
+    margin-bottom: 15px;
+}
+
+.add-page .form-group input, .add-page .form-group select, .edit-page .form-group input, .edit-page .form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #f2b880;
+}
+
+.add-page .button-group ,.edit-page .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.add-page .button-group button , .edit-page .button-group button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-page .confirm-btn , .edit-page .confirm-btn {
+    background-color: #ffb534;
+    color: #000000;
+}
+
+.add-page .cancel-btn , .edit-page .cancel-btn { 
+    background-color: rgb(219, 28, 28);
+    color: white;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 800px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+
+    .product-image {
+        width: 30%;
+        max-width: 30%;
+        
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-row span {
+        margin-bottom: 5px;
+    }
+
+    .product-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .edit-btn, .delete-btn, .list-btn, .add-btn {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .product-filter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .add-page .container, .edit-page .container {
+        width: 90%;
+        padding: 5%;
+        margin-top: 2%;
+    }
+
+    .add-page .button-group,.edit-page .button-group {
+  
+        gap: 10px;
+    }
+
+    .add-page .button-group button,.edit-page .button-group button{
+        width: 100%;
+        padding: 15px;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fdf6e3;
+      }
+      
+      .container {
+        width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fffbf2;
+        border-radius: 10px;
+        border: 2px solid #ff8d5c;
+      }
+      
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 20px;
+      }
+      
+      .logo {
+        background-color: #ffb534;
+        border: 2px solid #bc8400;
+        padding: 15px;
+        width: 150px;
+        text-align: center;
+        border-radius: 3px;
+        color: #000000;
+      }
+      
+      .home-btn {
+        background-color: #f2b880;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #000000;
+        border-radius: 10px;
+      }
+      
+      .product-filter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        border-radius: 10px;
+      }
+      
+      .filter-group {
+        display: flex;
+        gap: 10px;
+      }
+      
+      .product-filter input {
+        padding: 5px;
+        width: 200px;
+        border-radius: 5px;
+        border: 1px solid #f2b880;
+      }
+      
+      .product-filter .search-btn {
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 2px solid #ff8d5c;
+        background-color: #f2b880;
+        color: #000000;
+      }
+      
+      .product-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+      }
+      
+      .add-btn {
+        background-color: #f2b880;
+        padding: 5px 10px;
+        cursor: pointer;
+        border: 2px solid #ff8d5c;
+        border-radius: 5px;
+        color: #000000;
+      }
+      
+      .product-list {
+        margin-top: 20px;
+      }
+      
+      .product-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        background-color: #fbe4c1;
+        border: 2px solid #ff8d5c;
+        margin-bottom: 15px;
+        align-items: center;
+        border-radius: 10px;
+      }
+      
+      .product-image {
+        width: 180px;
+        height: 180px;
+        background-color: #e8ccb0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+      }
+      
+      .product-image img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+      .product-details {
+        flex-grow: 1;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      
+      .product-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 20px;
+      }
+      
+      .edit-btn,
+      .delete-btn {
+        background-color: #f2b880;
+        padding: 5px 10px;
+        cursor: pointer;
+        border: 2px solid #ff8d5c;
+        border-radius: 5px;
+        color: #000000;
+      }
+      
+      .product-item[data-status="상품 준비 중"] .status {
+        color: red;
+        font-weight: bold;
+      }
+      
+      .product-item[data-status="배송 중"] .status {
+        color: orange;
+        font-weight: bold;
+      }
+      
+      .product-item[data-status="배송 완료"] .status {
+        color: green;
+        font-weight: bold;
+      }
+      
+      .add-page .container,
+      .edit-page .container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fffbf2;
+        border: 2px solid #ff8d5c;
+        border-radius: 10px;
+      }
+      
+      .add-page h2,
+      .edit-page h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ff8d5c;
+      }
+      
+      .add-page .form-group,
+      .edit-page .form-group {
+        margin-bottom: 15px;
+      }
+      
+      .add-page .form-group input,
+      .add-page .form-group select,
+      .edit-page .form-group input,
+      .edit-page .form-group select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #f2b880;
+      }
+      
+      .add-page .button-group,
+      .edit-page .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+      
+      .add-page .button-group button,
+      .edit-page .button-group button {
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      
+      .add-page .confirm-btn,
+      .edit-page .confirm-btn {
+        background-color: #ffb534;
+        color: #000000;
+      }
+      
+      .add-page .cancel-btn,
+      .edit-page .cancel-btn {
+        background-color: rgb(219, 28, 28);
+        color: white;
+      }
+      
+    
+        .container {
+          width: 100%;
+          padding: 10px;
+        }
+      
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: center;
+        }
+      
+        .product-image {
+          width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+      
+        .info-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      
+        .info-row span {
+          margin-bottom: 5px;
+        }
+      
+        .product-actions {
+          flex-direction: column;
+          gap: 5px;
+        }
+      
+        .edit-btn,
+        .delete-btn,
+        .list-btn,
+        .add-btn {
+          width: 100%;
+          padding: 15px;
+        }
+      
+        .filter-group {
+          flex-direction: column;
+          gap: 5px;
+        }
+      
+        .product-filter {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+      
+        .add-page .container,
+        .edit-page .container,
+        .view-page .container {
+          width: 90%;
+          padding: 5%;
+          margin-top: 2%;
+        }
+      
+        .add-page .button-group,
+        .edit-page .button-group,
+        .view-page .button-group {
+          gap: 10px;
+        }
+      
+        .add-page .button-group button,
+        .edit-page .button-group button,
+        .view-page .button-group button {
+          width: 100%;
+          padding: 15px;
+        }
+      
+      
+
+}
