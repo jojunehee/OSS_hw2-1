@@ -1,0 +1,112 @@
+{
+  "parcels": [
+    {
+      "id": "0",
+      "tracking_number": "AB123456",
+      "sender_name": "조준희",
+      "recipient_name": "이영희",
+      "recipient_address": "서울특별시 강남구 테헤란로 123",
+      "status": "배송 중",
+      "cost": 10500
+    },
+    {
+      "id": "1",
+      "tracking_number": "CD789012",
+      "sender_name": "박지수",
+      "recipient_name": "최민수",
+      "recipient_address": "부산광역시 해운대구 해운대로 456",
+      "status": "배송 완료",
+      "cost": 15000
+    },
+    {
+      "id": "2",
+      "tracking_number": "EF345678",
+      "sender_name": "정하나",
+      "recipient_name": "강성훈",
+      "recipient_address": "대구광역시 중구 중앙대로 789",
+      "status": "대기 중",
+      "cost": 8700
+    },
+    {
+      "id": "3",
+      "tracking_number": "GH901234",
+      "sender_name": "김민정",
+      "recipient_name": "이준호",
+      "recipient_address": "인천광역시 남동구 논현로 101",
+      "status": "발송 준비",
+      "cost": 12300
+    },
+    {
+      "id": "4",
+      "tracking_number": "IJ567890",
+      "sender_name": "장예진",
+      "recipient_name": "조용필",
+      "recipient_address": "경기도 성남시 분당구 서현로 202",
+      "status": "배송 중",
+      "cost": 9800
+    },
+    {
+      "id": "5",
+      "tracking_number": "KL345678",
+      "sender_name": "윤아람",
+      "recipient_name": "서은호",
+      "recipient_address": "대전광역시 서구 둔산남로 303",
+      "status": "반송",
+      "cost": 7500
+    },
+    {
+      "id": "6",
+      "tracking_number": "MN123456",
+      "sender_name": "이수민",
+      "recipient_name": "최서준",
+      "recipient_address": "울산광역시 남구 삼산로 404",
+      "status": "배송 중",
+      "cost": 14000
+    },
+    {
+      "id": "7",
+      "tracking_number": "OP789012",
+      "sender_name": "박서연",
+      "recipient_name": "임도윤",
+      "recipient_address": "광주광역시 북구 무등로 505",
+      "status": "배송 완료",
+      "cost": 11200
+    },
+    {
+      "id": "8",
+      "tracking_number": "QR345678",
+      "sender_name": "한지훈",
+      "recipient_name": "김세영",
+      "recipient_address": "경상북도 포항시 남구 해안로 606",
+      "status": "배송 준비",
+      "cost": 13500
+    },
+    {
+      "id": "9",
+      "tracking_number": "ST901234",
+      "sender_name": "손예슬",
+      "recipient_name": "이시은",
+      "recipient_address": "충청북도 청주시 상당구 상당로 707",
+      "status": "발송 준비",
+      "cost": 10000
+    },
+    {
+      "id": "10",
+      "tracking_number": "UV345678",
+      "sender_name": "서준영",
+      "recipient_name": "홍성민",
+      "recipient_address": "제주특별자치도 제주시 한라산로 808",
+      "status": "배송 중",
+      "cost": 15800
+    },
+    {
+      "id": "11",
+      "tracking_number": "WX901234",
+      "sender_name": "최은서",
+      "recipient_name": "박성호",
+      "recipient_address": "강원도 춘천시 중앙로 909",
+      "status": "배송 완료",
+      "cost": 9900
+    }
+  ]
+}
