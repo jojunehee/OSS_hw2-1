@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,13 +129,13 @@
         }
     </style>
 </head>
-
 <body>
     <h1>택배 관리 서비스</h1>
     <div id="parcel-list"></div>
     <div class="button-group">
         <button class="add-button" onclick="openModal()">Add Parcel</button>
     </div>
+
     <!-- 모달 폼 -->
     <div id="modal" class="modal">
         <div class="modal-content">
@@ -161,7 +160,7 @@
     <script>
         const apiUrl = "http://localhost:3000/parcels";
 
-        // 목록 서버에서 집어오기 
+        // 목록 서버에서 가져오기 
         function getParcels() {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", apiUrl, true);
@@ -176,13 +175,14 @@
 
         function displayParcels(parcels) {
             const parcelList = document.getElementById("parcel-list");
-            parcelList.innerHTML = ""; // 기존 읽어온 거 날리기 (새로고침을 위함)
+            parcelList.innerHTML = "";
 
             parcels.forEach(parcel => {
                 const div = document.createElement("div");
                 div.className = "parcel-box";
 
                 div.innerHTML = `
+                    <p>Id: ${parcel.id}</p>
                     <h3>Tracking Number: ${parcel.tracking_number}</h3>
                     <p>Sender: ${parcel.sender_name}</p>
                     <p>Recipient: ${parcel.recipient_name}, ${parcel.recipient_address}</p>
@@ -207,13 +207,15 @@
             document.getElementById("recipient-address").value = address;
             document.getElementById("status").value = status;
             document.getElementById("cost").value = cost;
-            document.getElementById("modal-title").innerText = id ? "Edit Parcel" : "Add Parcel"; /*id가 있느냐로 수정인지 추가인지 구분하여 돌려막기*/
+            document.getElementById("modal-title").innerText = id ? "Edit Parcel" : "Add Parcel";
             document.getElementById("modal").style.display = "flex";
         }
 
         // 모달 닫기
         function closeModal() {
             document.getElementById("modal").style.display = "none";
+            // 모달 초기화
+            document.getElementById("parcel-id").value = "";
         }
 
         // 데이터 생성/수정 후 저장 함수
@@ -225,22 +227,23 @@
             const recipientAddress = document.getElementById("recipient-address").value.trim();
             const status = document.getElementById("status").value;
             const cost = document.getElementById("cost").value.trim();
-            // 빈칸 체크
+
             if (!trackingNumber || !senderName || !recipientName || !recipientAddress || !status || !cost) {
                 alert("모든 정보를 입력해야 합니다.");
                 return;
             }
+
+            const parcelData = {
+                tracking_number: trackingNumber,
+                sender_name: senderName,
+                recipient_name: recipientName,
+                recipient_address: recipientAddress,
+                status: status,
+                cost: parseFloat(cost)
+            };
+
             if (id) {
                 // 기존 데이터 수정
-                const updatedParcel = {
-                    tracking_number: trackingNumber,
-                    sender_name: senderName,
-                    recipient_name: recipientName,
-                    recipient_address: recipientAddress,
-                    status: status,
-                    cost: parseFloat(cost)
-                };
-
                 const xhr = new XMLHttpRequest();
                 xhr.open("PUT", `${apiUrl}/${id}`, true);
                 xhr.setRequestHeader("Content-Type", "application/json");
@@ -250,42 +253,19 @@
                         getParcels();
                     }
                 };
-                xhr.send(JSON.stringify(updatedParcel));
+                xhr.send(JSON.stringify(parcelData));
             } else {
-                // 데이터 생성
-                const xhrGet = new XMLHttpRequest();
-                xhrGet.open("GET", apiUrl, true);
-                xhrGet.onload = function () {
-                    if (xhrGet.status === 200) {
-                        const parcels = JSON.parse(xhrGet.responseText);
-
-                        // id 겨우 순서대로 붙엿다 이 자석
-                        const maxId = parcels.length > 0 ? Math.max(...parcels.map(p => parseInt(p.id))) : 0;
-                        const newId = maxId + 1;
-
-                        const newParcel = {
-                            id: newId,
-                            tracking_number: trackingNumber,
-                            sender_name: senderName,
-                            recipient_name: recipientName,
-                            recipient_address: recipientAddress,
-                            status: status,
-                            cost: parseFloat(cost)
-                        };
-
-                        const xhrPost = new XMLHttpRequest();
-                        xhrPost.open("POST", apiUrl, true);
-                        xhrPost.setRequestHeader("Content-Type", "application/json");
-                        xhrPost.onload = function () {
-                            if (xhrPost.status === 201) {
-                                closeModal();
-                                getParcels();
-                            }
-                        };
-                        xhrPost.send(JSON.stringify(newParcel));
+                // 새 데이터 추가
+                const xhrPost = new XMLHttpRequest();
+                xhrPost.open("POST", apiUrl, true);
+                xhrPost.setRequestHeader("Content-Type", "application/json");
+                xhrPost.onload = function () {
+                    if (xhrPost.status === 201) {
+                        closeModal();
+                        getParcels();
                     }
                 };
-                xhrGet.send();
+                xhrPost.send(JSON.stringify(parcelData));
             }
         }
 
@@ -303,9 +283,8 @@
             }
         }
 
-        // 로드
+        // 페이지 로드 시 데이터 가져오기
         window.onload = getParcels;
     </script>
 </body>
-
 </html>

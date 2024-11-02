@@ -19,13 +19,13 @@
       "cost": 15000
     },
     {
-      "id": "2",
       "tracking_number": "EF345678",
       "sender_name": "정하나",
       "recipient_name": "강성훈",
       "recipient_address": "대구광역시 중구 중앙대로 789",
-      "status": "대기 중",
-      "cost": 8700
+      "status": "발송 준비",
+      "cost": 8700,
+      "id": "2"
     },
     {
       "id": "3",
